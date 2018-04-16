@@ -1,4 +1,5 @@
 import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +16,8 @@ public class GUIDemo extends JFrame
     private JPanel panel;
     private JButton biggerButton;
     private JButton smallerButton;
+    private JButton grayButton;
+    private JButton yellowButton;
 
     /**
      * Set up the application.
@@ -22,18 +25,24 @@ public class GUIDemo extends JFrame
     public GUIDemo()
     {
 	// CONSTRUCTOR NEEDS TO BE FINISHED!
-    setTitle("Bigger/Smaller");
-    setSize(200, 100);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    panel = new JPanel();
-    biggerButton = new JButton("BIGGER");
-    smallerButton = new JButton("SMALLER");
-    biggerButton.addActionListener(new ButtonHandler());
-    smallerButton.addActionListener(new ButtonHandler());
-    add(panel);
-    panel.add(biggerButton);
-    panel.add(smallerButton);
-    setVisible(true);
+        setTitle("Bigger/Smaller");
+        setSize(200, 100);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panel = new JPanel();
+        biggerButton = new JButton("BIGGER");
+        smallerButton = new JButton("SMALLER");
+        yellowButton = new JButton("CHANGE YELLOW");
+        grayButton = new JButton("CHANGE GRAY");
+        biggerButton.addActionListener(new ButtonHandler());
+        smallerButton.addActionListener(new ButtonHandler());
+        yellowButton.addActionListener(new ButtonHandler());
+        grayButton.addActionListener(new ButtonHandler());
+        add(panel);
+        panel.add(biggerButton);
+        panel.add(smallerButton);
+        panel.add(yellowButton);
+        panel.add(grayButton);
+        setVisible(true);
     }
 
     /**
@@ -50,7 +59,16 @@ public class GUIDemo extends JFrame
         {
             Dimension size = getSize();
 
-            if (e.getSource().equals(biggerButton))
+            if (e.getSource().equals(yellowButton))
+            {
+                panel.setBackground(Color.YELLOW);
+            }
+            else if (e.getSource().equals(grayButton))
+            {
+                panel.setBackground(Color.GRAY);
+            }
+
+            else if (e.getSource().equals(biggerButton))
             {
                 setSize(size.width + 10, size.height + 10);
             }
